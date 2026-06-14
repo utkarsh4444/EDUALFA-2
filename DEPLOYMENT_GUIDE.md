@@ -22,6 +22,8 @@ JWT_SECRET = your-super-secret-key-at-least-32-chars
 NODE_ENV = production
 FRONTEND_URL = https://frontend-edualfa.vercel.app
 PORT = 3000
+ADMIN_USERNAME = admin
+ADMIN_PASSWORD = admin123
 ```
 
 **If you don't have a PostgreSQL database yet:**
@@ -35,11 +37,11 @@ After adding env vars:
 2. Wait for "Live" status (3-5 mins)
 3. Check **Logs** tab — should show "Server running on port 3000"
 
-### Step 3: Test
+### Step 3: Test Login
 
 Open https://frontend-edualfa.vercel.app and try:
-- Admin Login (test credentials from your seed data)
-- Student Signup / Login
+- **Admin Login**: username=`admin`, password=`admin123`
+- **Student Signup / Login**: Create a new student account or use existing one
 
 ---
 
@@ -55,11 +57,13 @@ GitHub Action is set up to auto-deploy on `main` push if you add:
 - [ ] DATABASE_URL added to Render
 - [ ] JWT_SECRET added to Render  
 - [ ] NODE_ENV = production
+- [ ] ADMIN_USERNAME = admin
+- [ ] ADMIN_PASSWORD = admin123
 - [ ] FRONTEND_URL = https://frontend-edualfa.vercel.app
 - [ ] Manual Deploy clicked
 - [ ] Backend shows "Live" status
 - [ ] Logs show "Server running"
-- [ ] Frontend login works
+- [ ] Frontend login works (admin: admin/admin123)
 
 ---
 
@@ -74,6 +78,10 @@ GitHub Action is set up to auto-deploy on `main` push if you add:
 - Verify `VITE_API_URL` is correct in Vercel (should be https://edualfa-2-1.onrender.com/api)
 - Check backend /api/health endpoint: https://edualfa-2-1.onrender.com/api/health
 - Should return: `{"status":"ok","uptime":...}`
+
+**Admin login says "Incorrect admin credentials"**
+- Verify ADMIN_USERNAME=admin and ADMIN_PASSWORD=admin123 are set on Render
+- Check backend logs for any JWT_SECRET errors
 
 **Database connection error**
 - DATABASE_URL must be valid PostgreSQL connection string

@@ -9,7 +9,9 @@ services:
         value: production
       - key: DATABASE_URL
         sync: false
+      - key: JWT_SECRET
+        sync: false
       - key: FRONTEND_URL
-        value: https://your-vercel-domain.vercel.app
+        value: https://frontend-edualfa.vercel.app
       - key: PORT
         value: 3000

@@ -1,32 +1,91 @@
-# EduAlfa - Class 8 Quiz Platform
+# 🎓 EduAlfa - Class 8 Student Assessment & Performance Tracking Platform
 
-EduAlfa is a dark-themed quiz platform for Class 8 students with real-time leaderboard, admin management, and immersive student flows.
+## Overview
 
-## 🚀 DEPLOYMENT
+EduAlfa is a Full Stack web application designed for Class 8 students to take subject-wise quizzes, track academic performance, and compete on a dynamic real-time leaderboard.
 
-**🎯 Quick Start**: Follow [SETUP_GUIDE.md](SETUP_GUIDE.md) to deploy in 10 minutes!
-
-**📍 Live URLs**:
-- Frontend: https://frontend-edualfa.vercel.app
-- Backend API: https://edualfa-2-1.onrender.com/api
-
-**⚡ What You Need**:
-1. A PostgreSQL database (free from Neon.tech, Render, or Supabase)
-2. 2 environment variables on Render (DATABASE_URL, JWT_SECRET)
-3. 5 minutes of your time
-
-**👉 [Start Here: SETUP_GUIDE.md](SETUP_GUIDE.md)**
+The platform provides separate Admin and Student portals, automatic quiz evaluation, score tracking, historical performance records, badges, achievements, and live leaderboard updates.
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-- Frontend: React 18, Vite, TypeScript, Tailwind CSS, Framer Motion, React Router DOM v6, Axios, Socket.io-client, Recharts, React Hot Toast, Lucide React
-- Backend: Node.js, Express, TypeScript, Prisma ORM, PostgreSQL, Socket.io, JWT, bcryptjs, cors, dotenv
+### 👨‍💼 Admin Portal
 
-## Architecture
+* Create and manage student records
+* Generate and assign unique Student IDs
+* Create and manage Class 8 subjects
+* Create quizzes under subjects
+* Add and manage quiz questions
+* View student quiz attempts and scores
+* Manage and update quiz data
+* Dashboard statistics and analytics
 
-```
+### 👨‍🎓 Student Portal
+
+* Login using Student ID
+* View available subjects
+* Attempt subject-wise quizzes
+* Submit quiz responses
+* Receive instant quiz results
+* Track historical performance
+* Earn badges and achievements
+* View leaderboard rankings
+
+### 📝 Quiz Evaluation
+
+* Automatic answer evaluation
+* Automatic score calculation
+* Score storage in database
+* Attempt history tracking
+* Performance analytics
+
+### 🏆 Real-Time Leaderboard
+
+* Dynamic ranking system
+* Automatic updates after quiz submissions
+* Performance-based scoring
+* Subject-wise rankings
+* Live updates using Socket.IO
+
+---
+
+## 🛠 Technology Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router
+* Axios
+* Socket.IO Client
+* Framer Motion
+* Recharts
+* React Hot Toast
+
+### Backend
+
+* Node.js
+* Express.js
+* TypeScript
+* Prisma ORM
+* PostgreSQL
+* JWT Authentication
+* Socket.IO
+* bcryptjs
+
+### Database
+
+* PostgreSQL
+* Prisma ORM
+
+---
+
+## 📁 Project Structure
+
+```text
 edualfa/
 ├── backend/
 │   ├── prisma/
@@ -38,6 +97,7 @@ edualfa/
 │   │   ├── socket/
 │   │   └── server.ts
 │   └── package.json
+│
 └── frontend/
     ├── src/
     │   ├── components/
@@ -49,78 +109,207 @@ edualfa/
     └── package.json
 ```
 
-## Local Setup
+---
 
-### Backend
+## 🗄 Database Schema
+
+Database schema is available in:
+
+```text
+backend/prisma/schema.prisma
+```
+
+The schema includes models for:
+
+* Students
+* Subjects
+* Quizzes
+* Questions
+* Quiz Attempts
+* Leaderboard Data
+* Badge Tracking
+
+---
+
+## ⚙️ Setup Instructions
+
+### Backend Setup
 
 ```bash
-cd edualfa/backend
+cd backend
+
 npm install
-cp .env.example .env
-# Update DATABASE_URL if needed
+
 npm run prisma:generate
+
 npm run prisma:migrate
+
 npm run dev
 ```
 
-### Frontend
+### Frontend Setup
 
 ```bash
-cd edualfa/frontend
+cd frontend
+
 npm install
+
 npm run dev
 ```
 
-## Admin Credentials
+---
 
-- Username: `admin`
-- Password: `admin123`
+## 🔐 Environment Variables
 
-## Leaderboard Scoring Formula
+Create a `.env` file inside the backend folder:
 
-```js
+```env
+DATABASE_URL=your_database_url
+JWT_SECRET=your_secret_key
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin123
+```
+
+---
+
+## 👤 Admin Credentials
+
+```text
+Username: admin
+Password: admin123
+```
+
+---
+
+## 📊 Leaderboard Logic
+
+Leaderboard rankings are calculated using:
+
+* Quiz Accuracy
+* Speed Bonus
+* Performance Consistency
+
+Formula:
+
+```javascript
 finalScore = Math.round(
   (accuracyScore + speedBonus) * consistencyMultiplier * 10
-) / 10
+) / 10;
 ```
 
 Where:
-- `accuracyScore = (correctPoints / totalPoints) * 100`
-- `speedBonus = min(count of fast attempts * 5, 20)`
-- `consistencyMultiplier = attempts >= 3 ? 1.1 : 1.0`
 
-## Deployment Guide
+```javascript
+accuracyScore = (correctPoints / totalPoints) * 100;
+speedBonus = Math.min(fastAttempts * 5, 20);
+consistencyMultiplier = attempts >= 3 ? 1.1 : 1.0;
+```
 
-### Railway
+---
 
-1. Push repository to GitHub.
-2. Create Railway project and connect repository.
-3. Set `DATABASE_URL`, `JWT_SECRET`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `CLIENT_URL`.
-4. Set backend start command: `npm run start`.
+## 🎖️ Badge System
 
-### Vercel
+The platform includes a gamification-based badge system to motivate students and reward consistent performance.
 
-1. Add frontend project to Vercel.
-2. Set environment variables: `VITE_API_URL`, `VITE_SOCKET_URL`.
-3. Connect to GitHub and deploy.
+| Badge               | Condition                                   | Rarity    |
+| ------------------- | ------------------------------------------- | --------- |
+| 🥇 Top Scholar      | Rank #1 on leaderboard                      | Legendary |
+| 💯 Perfectionist    | Perfect score on any quiz                   | Epic      |
+| 🏆 Subject Champion | Complete all difficulty levels in a subject | Legendary |
+| 🔥 On Fire          | Maintain a 3-quiz streak                    | Rare      |
+| ⚡ Speed Demon       | Earn a fast completion bonus                | Rare      |
+| 🔴 Hard Master      | Score 80%+ on a Hard quiz                   | Epic      |
+| 🟡 Medium Master    | Score 80%+ on a Medium quiz                 | Rare      |
+| 🟢 Easy Master      | Score 80%+ on an Easy quiz                  | Uncommon  |
+| 📚 Subject Expert   | Achieve high-score mastery in a subject     | Uncommon  |
 
-## API Endpoints
+---
 
-| Endpoint | Method | Description |
-|---|---|---|
-| `/api/auth/admin-login` | POST | Admin login |
-| `/api/auth/student-login` | POST | Student login |
-| `/api/auth/me` | GET | Get authenticated user |
-| `/api/admin/students` | GET/POST/PUT/DELETE | Manage students |
-| `/api/admin/subjects` | GET/POST/PUT/DELETE | Manage subjects |
-| `/api/admin/quizzes` | GET/POST/PUT/DELETE | Manage quizzes |
-| `/api/admin/attempts` | GET | List quiz attempts |
-| `/api/admin/stats` | GET | Admin stats |
-| `/api/student/subjects` | GET | Student subjects |
-| `/api/student/subjects/:id/quizzes` | GET | List quizzes by subject |
-| `/api/student/quizzes/:id` | GET | Fetch quiz details |
-| `/api/student/quizzes/:id/submit` | POST | Submit quiz |
-| `/api/student/attempts` | GET | Student attempts |
-| `/api/student/profile` | GET | Profile info |
-| `/api/leaderboard` | GET | Leaderboard data |
-| `/api/leaderboard/subject/:id` | GET | Leaderboard by subject |
+## 🔌 Real-Time Updates (Socket.IO)
+
+The leaderboard updates automatically whenever a student submits a quiz.
+
+### Event Flow
+
+| Event                | Direction       | Description                                         |
+| -------------------- | --------------- | --------------------------------------------------- |
+| `leaderboard:update` | Server → Client | Triggered after quiz submission to refresh rankings |
+
+### Benefits
+
+* No page refresh required
+* Instant leaderboard updates
+* Live ranking synchronization
+* Better user experience
+
+---
+
+## 🌐 API Endpoints
+
+### Authentication
+
+* POST `/api/auth/admin-login`
+* POST `/api/auth/student-login`
+* GET `/api/auth/me`
+
+### Admin APIs
+
+* `/api/admin/students`
+* `/api/admin/subjects`
+* `/api/admin/quizzes`
+* `/api/admin/attempts`
+* `/api/admin/stats`
+
+### Student APIs
+
+* `/api/student/subjects`
+* `/api/student/quizzes`
+* `/api/student/attempts`
+* `/api/student/profile`
+
+### Leaderboard APIs
+
+* `/api/leaderboard`
+* `/api/leaderboard/subject/:id`
+
+---
+
+## ✅ Assignment Requirements Covered
+
+✅ Admin Portal
+
+✅ Student Portal
+
+✅ Subject-wise Quiz Management
+
+✅ Automatic Quiz Evaluation
+
+✅ Score Storage in Database
+
+✅ Historical Performance Tracking
+
+✅ Dynamic Leaderboard
+
+✅ Real-Time Updates
+
+✅ Responsive Frontend
+
+✅ Backend API Integration
+
+✅ Database Schema Design
+
+✅ Input Validation
+
+✅ Error Handling
+
+✅ Badge & Achievement System
+
+✅ Socket.IO Real-Time Communication
+
+---
+
+## 👨‍💻 Developed By
+
+**Utkarsh**
+
+Full Stack Developer

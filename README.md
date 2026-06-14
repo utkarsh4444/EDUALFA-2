@@ -2,6 +2,23 @@
 
 EduAlfa is a dark-themed quiz platform for Class 8 students with real-time leaderboard, admin management, and immersive student flows.
 
+## 🚀 DEPLOYMENT
+
+**🎯 Quick Start**: Follow [SETUP_GUIDE.md](SETUP_GUIDE.md) to deploy in 10 minutes!
+
+**📍 Live URLs**:
+- Frontend: https://frontend-edualfa.vercel.app
+- Backend API: https://edualfa-2-1.onrender.com/api
+
+**⚡ What You Need**:
+1. A PostgreSQL database (free from Neon.tech, Render, or Supabase)
+2. 2 environment variables on Render (DATABASE_URL, JWT_SECRET)
+3. 5 minutes of your time
+
+**👉 [Start Here: SETUP_GUIDE.md](SETUP_GUIDE.md)**
+
+---
+
 ## Tech Stack
 
 - Frontend: React 18, Vite, TypeScript, Tailwind CSS, Framer Motion, React Router DOM v6, Axios, Socket.io-client, Recharts, React Hot Toast, Lucide React
